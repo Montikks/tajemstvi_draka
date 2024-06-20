@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tajemství Dračího Království</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <h1>Vítejte v Tajemství Dračího Království</h1>
+    <p>{{ story }}</p>
+    <h2>Inventář</h2>
+    <ul>
+        {% for item in inventory %}
+            <li>{{ item.name }}: {{ item.description }}</li>
+        {% endfor %}
+    </ul>
+    <h2>Akce</h2>
+    <button onclick="interact('vesnický starosta')">Mluvit s vesnickým starostou</button>
+    <button onclick="interact('obchodník')">Mluvit s obchodníkem</button>
+    <button onclick="startCombat()">Začít boj</button>
+
+    <script>
+        function interact(npc) {
+            fetch(`/interact/${npc}`)
+                .then(response => response.text())
+                .then(data => {
+                    alert(data);
+                });
+        }
+
+        function startCombat() {
+            fetch('/combat')
+                .then(response => response.json())
+                .then(data => {
+                    alert(data.log.join('\n'));
+                });
+        }
+    </script>
+</body>
+</html>

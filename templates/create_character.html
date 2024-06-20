@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tvorba postavy</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <h1>Vytvořte si svou postavu</h1>
+    <form action="/create_character" method="post">
+        <label for="name">Jméno:</label>
+        <input type="text" id="name" name="name" required><br><br>
+        <label for="class">Třída:</label>
+        <select id="class" name="class">
+            <option value="bojovník">Bojovník</option>
+            <option value="mág">Mág</option>
+            <option value="zloděj">Zloděj</option>
+        </select><br><br>
+        <button type="submit">Vytvořit postavu</button>
+    </form>
+</body>
+</html>
