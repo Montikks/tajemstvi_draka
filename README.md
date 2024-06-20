@@ -13,7 +13,7 @@ Tajemství Dračího Království je webová hra inspirovaná Dračími Doupěte
 1. Klonujte repozitář:
    ```sh
    git clone https://github.com/Montikks/tajemstvi_drak.git
-   cd tajemstvi_drak
+   cd tajemstvi_draka
 
 ## Spuštění aplikace
 
