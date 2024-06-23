@@ -2,21 +2,52 @@
 <html>
 <head>
     <title>Tajemství Dračího Království</title>
+    <!-- Path to CSS: {{ url_for('static', filename='css/styles.css') }} -->
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 <body>
-    <h1>Vítejte v Tajemství Dračího Království</h1>
-    <p>{{ story }}</p>
-    <h2>Inventář</h2>
-    <ul>
-        {% for item in inventory %}
-            <li>{{ item.name }}: {{ item.description }}</li>
-        {% endfor %}
-    </ul>
-    <h2>Akce</h2>
-    <button onclick="interact('vesnický starosta')">Mluvit s vesnickým starostou</button>
-    <button onclick="interact('obchodník')">Mluvit s obchodníkem</button>
-    <button onclick="startCombat()">Začít boj</button>
+    <div class="container">
+        <h1>Vítejte v Tajemství Dračího Království</h1>
+        <p>{{ story }}</p>
+        <div class="inventory">
+            <h2>Inventář</h2>
+            <ul>
+                {% for item in inventory %}
+                    <li>{{ item.name }} ({{ item.item_type }}): {{ item.description }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="quests">
+            <h2>Úkoly</h2>
+            <ul>
+                {% for quest in quests %}
+                    <li>
+                        {{ quest.name }}: {{ quest.description }} - Odměna: {{ quest.reward }} - {% if quest.is_completed %}Splněno{% else %}Nesplněno{% endif %}
+                        {% if not quest.is_completed %}
+                            <a href="{{ url_for('complete_quest', quest_id=quest.id) }}">Dokončit úkol</a>
+                        {% endif %}
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="skills">
+            <h2>Dovednosti a kouzla</h2>
+            <ul>
+                {% for skill in skills %}
+                    <li>{{ skill.name }} ({{ skill.skill_type }}): {{ skill.description }} - Síla: {{ skill.power }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="actions">
+            <h2>Akce</h2>
+            <button onclick="interact('vesnický starosta')">Mluvit s vesnickým starostou</button>
+            <button onclick="interact('obchodník')">Mluvit s obchodníkem</button>
+            <button onclick="interact('kouzelník')">Mluvit s kouzelníkem</button>
+            <button onclick="interact('bojovník')">Trénovat s bojovníkem</button>
+            <button onclick="startCombat()">Začít boj</button>
+            <a href="{{ url_for('shop') }}">Navštívit obchod</a>
+        </div>
+    </div>
 
     <script>
         function interact(npc) {
@@ -28,10 +59,24 @@
         }
 
         function startCombat() {
+            console.log('Starting combat...');
             fetch('/combat')
-                .then(response => response.json())
+                .then(response => {
+                    console.log('Combat response received');
+                    return response.json();
+                })
                 .then(data => {
-                    alert(data.log.join('\n'));
+                    if (data.error) {
+                        console.error('Error:', data.error);
+                        alert(`Chyba: ${data.error}`);
+                    } else {
+                        console.log('Combat data:', data);
+                        alert(data.log.join('\n'));
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Došlo k chybě při začátku boje.');
                 });
         }
     </script>

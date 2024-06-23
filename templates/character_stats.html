@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Statistiky Postavy</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Statistiky Postavy</h1>
+        <ul>
+            <li>Jméno: {{ stats.name }}</li>
+            <li>Třída: {{ stats.class }}</li>
+            <li>Síla: {{ stats.strength }}</li>
+            <li>Inteligence: {{ stats.intelligence }}</li>
+            <li>Obratnost: {{ stats.dexterity }}</li>
+            <li>Úroveň: {{ stats.level }}</li>
+            <li>Zkušenosti: {{ stats.experience }}</li>
+        </ul>
+        <a href="{{ url_for('index') }}">Zpět na hlavní stránku</a>
+    </div>
+</body>
+</html>

@@ -1,37 +1,44 @@
 # Tajemství Dračího Království
 
-Tajemství Dračího Království je webová hra inspirovaná Dračími Doupětem, vytvořená pomocí Flasku. Hráči mohou vytvářet postavy, prozkoumávat svět, bojovat s nepřáteli a interagovat s NPC.
+Tajemství Dračího Království je textová dobrodružná hra založená na příběhu, kde hráči mohou komunikovat s různými NPC, plnit úkoly, bojovat a nakupovat předměty.
 
-## Požadavky
+## Instalace a Spuštění
 
-- Python 3.8+
-- Flask
-- Flask-SQLAlchemy
-
-## Instalace
-
-1. Klonujte repozitář:
+1. Klonujte tento repozitář:
    ```sh
-   git clone https://github.com/Montikks/tajemstvi_drak.git
+   git clone https://github.com/Montikks/tajemstvi_draka.git
    cd tajemstvi_draka
 
-## Spuštění aplikace
-
-Vytvořte a aktivujte virtuální prostředí:
-    
-    python -m venv .venv
-    source .venv/bin/activate # Na Windows použijte: .venv\Scripts\activate
-
-Nainstalujte závislosti:
-
-    pip install -r requirements.txt
-
-Inicializujte databázi:
-
-    python -c "from app import db, app; with app.app_context(): db.create_all()"
-
-Spusťte aplikaci:
-
-    python app.py
+   python -m venv .venv
+   .venv\Scripts\activate   # Pro Windows
+   source .venv/bin/activate  # Pro Linux/MacOS
 
 
+   pip install -r requirements.txt
+   
+   python initialize_db.py
+
+   set FLASK_ENV=development   # Pro Windows
+   export FLASK_ENV=development  # Pro Linux/MacOS
+   python app.py
+
+## Funkce
+  
+   Inventář: Zobrazuje hráčovy předměty.
+   Úkoly: Zobrazuje úkoly, které hráč může plnit.
+   Dovednosti a kouzla: Zobrazuje dovednosti a kouzla, které hráč může použít.
+   Akce: Umožňuje hráči komunikovat s NPC, trénovat a bojovat.
+   
+## Přispívání
+Máte-li zájem přispět, otevřete prosím issue nebo pull request. Vaše příspěvky jsou vítány!
+
+## Licence
+Tento projekt je licencován pod MIT licencí.
+   
+### 3. Příprava a nahrání na GitHub
+
+Postupujte podle těchto kroků, abyste nahráli projekt na GitHub:
+
+1. **Inicializace Git repozitáře (pokud ještě není):**
+   ```sh
+   git init
