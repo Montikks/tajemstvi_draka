@@ -34,11 +34,5 @@ Máte-li zájem přispět, otevřete prosím issue nebo pull request. Vaše př�
 
 ## Licence
 Tento projekt je licencován pod MIT licencí.
-   
-### 3. Příprava a nahrání na GitHub
 
-Postupujte podle těchto kroků, abyste nahráli projekt na GitHub:
 
-1. **Inicializace Git repozitáře (pokud ještě není):**
-   ```sh
-   git init
